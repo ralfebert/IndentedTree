@@ -31,5 +31,5 @@ There are functions to convert between the two forms of representation:
 
 ```swift
 let indentedTree = flatten(recursiveTree)
-let recursiveTree = flatten(indentedTree)
+let recursiveTree = unflatten(indentedTree)
 ```

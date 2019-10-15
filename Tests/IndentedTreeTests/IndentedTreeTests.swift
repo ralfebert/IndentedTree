@@ -67,7 +67,7 @@ final class IndentedTreeTests: XCTestCase {
             IndentedTreeNode(indent: 1, content: "a"),
             IndentedTreeNode(indent: 5, content: "a.1"),
             IndentedTreeNode(indent: 2, content: "a.2"),
-            IndentedTreeNode(indent: 1, content: "b"),
+            IndentedTreeNode(indent: -3, content: "b"),
         ]
 
         XCTAssertEqual(unflatten(indentedTree), recursiveTree)

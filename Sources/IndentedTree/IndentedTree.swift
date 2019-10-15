@@ -19,10 +19,10 @@ public func unflatten<T>(_ list: [IndentedTreeNode<T>]) -> TreeNode<T>? {
     var list = list
 
     var root = TreeNode(content: list.removeFirst().content)
-    var lastNodePath = IndexPath(indexes: [0])
+    var lastNodePath = IndexPath()
 
     for node in list {
-        let pathToNodeParent = lastNodePath.prefix(node.indent - 1)
+        let pathToNodeParent = lastNodePath.prefix(max(node.indent, 1) - 1)
         root[pathToNodeParent].children.append(TreeNode(content: node.content))
         lastNodePath = pathToNodeParent + [root[pathToNodeParent].children.count - 1]
     }

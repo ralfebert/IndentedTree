@@ -15,16 +15,18 @@ public func flatten<T>(_ node: TreeNode<T>, indent: Int = 0) -> [IndentedTreeNod
 }
 
 public func unflatten<T>(_ list: [IndentedTreeNode<T>]) -> TreeNode<T>? {
-    guard !list.isEmpty else { return nil }
-    var list = list
+    guard let firstNode = list.first?.content else { return nil }
+    let remainingNodes = list.dropFirst()
 
-    var root = TreeNode(content: list.removeFirst().content)
+    var root = TreeNode(content: firstNode)
     var lastNodePath = IndexPath()
 
-    for node in list {
+    for node in remainingNodes {
         let pathToNodeParent = lastNodePath.prefix(max(node.indent, 1) - 1)
-        root[pathToNodeParent].children.append(TreeNode(content: node.content))
-        lastNodePath = pathToNodeParent + [root[pathToNodeParent].children.count - 1]
+        var children = root[pathToNodeParent].children
+        children.append(TreeNode(content: node.content))
+        root[pathToNodeParent].children = children
+        lastNodePath = pathToNodeParent.appending(children.indices.last!)
     }
 
     return root

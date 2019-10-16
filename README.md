@@ -1,9 +1,9 @@
 # IndentedTree
 
-A Swift package that allows to represent trees in a recursive
+A Swift package that allows to represent trees in a nested data structure:
 
 ```swift
-let recursiveTree =
+let nestedTree =
     TreeNode(content: "root", children: [
         TreeNode(content: "a", children: [
             TreeNode(content: "a.1"),
@@ -25,17 +25,17 @@ let indentedTree = [
 ]
 ```
 
-The recursive form supports access by index path:
+The nested form supports access by index path:
 
 ```swift
-recursiveTree[IndexPath(indexes: [0, 1])] == "a.2"
+nestedTree[IndexPath(indexes: [0, 1])] == "a.2"
 ```
 
 There are functions to convert between the two forms of representation:
 
 ```swift
-let indentedTree = flatten(recursiveTree)
-let recursiveTree = unflatten(indentedTree)
+let indentedTree = flatten(nestedTree)
+let nestedTree = unflatten(indentedTree)
 ```
 
 Discussion about these data structures:   

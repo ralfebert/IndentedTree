@@ -52,3 +52,13 @@ public extension TreeNode {
     }
 
 }
+
+extension TreeNode: CustomStringConvertible {
+
+    public var description: String {
+        flatten(self)
+            .map { String(repeating: "\t", count: $0.indent) + "\($0.content)" }
+            .joined(separator: "\n")
+    }
+
+}

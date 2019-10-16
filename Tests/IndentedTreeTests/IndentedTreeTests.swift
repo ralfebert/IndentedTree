@@ -91,4 +91,14 @@ final class IndentedTreeTests: XCTestCase {
         XCTAssertEqual(tree, expected)
     }
 
+    func testTreeNodeDescription() {
+        XCTAssertEqual("""
+        root
+        \ta
+        \t\ta.1
+        \t\ta.2
+        \tb
+        """, self.nestedTree.description)
+    }
+
 }

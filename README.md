@@ -1,6 +1,6 @@
 # IndentedTree
 
-A tiny Swift package that allows to represent trees in a nested data structure:
+A tiny Swift package that provides value types to represent trees in a nested data structure:
 
 ```swift
 let nestedTree =

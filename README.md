@@ -1,6 +1,6 @@
 # IndentedTree
 
-A Swift package that allows to represent trees in a recursive and a flat data structure:
+A Swift package that allows to represent trees in a recursive
 
 ```swift
 let recursiveTree =
@@ -11,7 +11,11 @@ let recursiveTree =
         ]),
         TreeNode(content: "b"),
     ])
+```
 
+or a flat data structure:
+
+```swift
 let indentedTree = [
     IndentedTreeNode(indent: 0, content: "root"),
     IndentedTreeNode(indent: 1, content: "a"),
@@ -33,3 +37,6 @@ There are functions to convert between the two forms of representation:
 let indentedTree = flatten(recursiveTree)
 let recursiveTree = unflatten(indentedTree)
 ```
+
+Discussion about these data structures:   
+https://stackoverflow.com/questions/58398986/converting-between-recursive-indented-tree-data-structure/58402323#58402323

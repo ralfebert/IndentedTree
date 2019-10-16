@@ -3,7 +3,7 @@ import XCTest
 
 final class IndentedTreeTests: XCTestCase {
 
-    let recursiveTree =
+    let nestedTree =
         TreeNode(content: "root", children: [
             TreeNode(content: "a", children: [
                 TreeNode(content: "a.1"),
@@ -20,15 +20,15 @@ final class IndentedTreeTests: XCTestCase {
         IndentedTreeNode(indent: 1, content: "b"),
     ]
 
-    let recursiveSingleNode = TreeNode(content: "root")
+    let nestedSingleNode = TreeNode(content: "root")
     let indentedSingleNode = [IndentedTreeNode(indent: 0, content: "root")]
 
     func testFlattenSingleNode() {
-        XCTAssertEqual(flatten(self.recursiveSingleNode), self.indentedSingleNode)
+        XCTAssertEqual(flatten(self.nestedSingleNode), self.indentedSingleNode)
     }
 
     func testFlatten() {
-        XCTAssertEqual(flatten(self.recursiveTree), self.indentedTree)
+        XCTAssertEqual(flatten(self.nestedTree), self.indentedTree)
     }
 
     func testUnflattenEmpty() {
@@ -37,11 +37,11 @@ final class IndentedTreeTests: XCTestCase {
     }
 
     func testUnflattenSingleNode() {
-        XCTAssertEqual(unflatten(self.indentedSingleNode), self.recursiveSingleNode)
+        XCTAssertEqual(unflatten(self.indentedSingleNode), self.nestedSingleNode)
     }
 
     func testUnflatten() {
-        XCTAssertEqual(unflatten(self.indentedTree), self.recursiveTree)
+        XCTAssertEqual(unflatten(self.indentedTree), self.nestedTree)
     }
 
     func testUnflattenDeindentJump() {
@@ -70,22 +70,22 @@ final class IndentedTreeTests: XCTestCase {
             IndentedTreeNode(indent: -3, content: "b"),
         ]
 
-        XCTAssertEqual(unflatten(indentedTree), recursiveTree)
+        XCTAssertEqual(unflatten(indentedTree), nestedTree)
 
     }
 
     func testSubscriptGet() {
-        let tree = self.recursiveTree
+        let tree = self.nestedTree
         XCTAssertEqual(tree[IndexPath()].content, "root")
         XCTAssertEqual(tree[IndexPath(indexes: [0])].content, "a")
         XCTAssertEqual(tree[IndexPath(indexes: [0, 1])].content, "a.2")
     }
 
     func testSubscriptSet() {
-        var tree = self.recursiveTree
+        var tree = self.nestedTree
         tree[IndexPath(indexes: [0, 1])].content = "a.2-changed"
 
-        var expected = self.recursiveTree
+        var expected = self.nestedTree
         expected.children[0].children[1].content = "a.2-changed"
 
         XCTAssertEqual(tree, expected)

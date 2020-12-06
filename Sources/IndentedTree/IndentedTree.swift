@@ -1,13 +1,27 @@
 import Foundation
 
 public struct TreeNode<T: Equatable>: Equatable {
-    var content: T
-    var children: [TreeNode] = []
+
+    public var content: T
+    public var children: [TreeNode] = []
+
+    public init(content: T, children: [TreeNode<T>] = []) {
+        self.content = content
+        self.children = children
+    }
+
 }
 
 public struct IndentedTreeNode<T: Equatable>: Equatable {
-    var indent: Int
-    var content: T
+
+    public var indent: Int
+    public var content: T
+
+    public init(indent: Int, content: T) {
+        self.indent = indent
+        self.content = content
+    }
+
 }
 
 public func flatten<T>(_ node: TreeNode<T>, indent: Int = 0) -> [IndentedTreeNode<T>] {
